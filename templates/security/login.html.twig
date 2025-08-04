@@ -1,0 +1,130 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    {# <form method="post">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        {% if app.user %}
+            <div class="mb-3">
+                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+            </div>
+        {% endif %} #}
+
+        {# <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <label for="username">Email</label>
+        <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
+        <label for="password">Password</label>
+        <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
+        <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}"> #}
+
+        {#
+            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+            See https://symfony.com/doc/current/security/remember_me.html
+
+            <div class="checkbox mb-3">
+                <input type="checkbox" name="_remember_me" id="_remember_me">
+                <label for="_remember_me">Remember me</label>
+            </div>
+        #}
+
+        {# <button class="btn btn-lg btn-primary" type="submit">
+            Sign in
+        </button> #}
+
+        <!-- Section: Design Block -->
+        <section class="">
+            <!-- Jumbotron -->
+            <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+                <div class="container">
+                <div class="row gx-lg-5 align-items-center">
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h1 class="my-5 display-3 fw-bold ls-tight">
+                        The best offer <br />
+                        <span class="text-primary">Join us to make your future successful</span>
+                    </h1>
+                    <p style="color: hsl(217, 10%, 50.8%)">
+                        Join us to unlock a world of opportunities and build a successful future. Our team is dedicated to helping you achieve your goals with the right support and resources. Embrace the journey to success with us and watch your dreams turn into reality. Let’s shape a brighter future together!
+                    </p>
+                    </div>
+
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="card">
+                        <div class="card-body py-5 px-md-5">
+                            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                            <form method="post">
+                                {% if error %}
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        {{ error.messageKey|trans(error.messageData, 'security') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </button>
+                                    </div>
+                                {% endif %}
+
+                                {% if app.user %}
+                                    <div class="mb-3">
+                                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                                    </div>
+                                {% endif %}
+
+                                <!-- Email input -->
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <input type="email" value="{{ last_username }}" name="_username" id="_username" class="form-control" />
+                                    <label class="form-label" for="_username">Email address</label>
+                                </div>
+
+                                <!-- Password input -->
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <input type="password" name="_password" id="_password" class="form-control" />
+                                    <label class="form-label" for="_password">Password</label>
+                                </div>
+
+                                <!-- Checkbox -->
+                                <div class="form-check d-flex justify-content-center- mb-4">
+                                    <input class="form-check-input me-2" type="checkbox" name="_remember_me" value="" id="_remember_me" checked />
+                                    <label class="form-check-label" for="_remember_me">
+                                        Remember me
+                                    </label>
+                                </div>
+
+                                <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+
+                                <!-- Submit button -->
+                                <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">
+                                Sign in
+                                </button>
+
+                                <!-- Register buttons -->
+                                <div class="text-center">
+                                <p>or sign up with:</p>
+                                <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
+                                    <i class="fab fa-facebook-f"></i>
+                                </button>
+
+                                <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
+                                    <i class="fab fa-google"></i>
+                                </button>
+
+                                <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
+                                    <i class="fab fa-twitter"></i>
+                                </button>
+
+                                <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
+                                    <i class="fab fa-github"></i>
+                                </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!-- Jumbotron -->
+        </section>
+        <!-- Section: Design Block -->
+    {# </form> #}
+{% endblock %}

@@ -1,0 +1,10 @@
+twig:
+    file_name_pattern: '*.twig'
+    globals:
+        server_path: '%server_path%'
+        qualifications: '%qualifications%'
+        technical_courses: '%technical_courses%'
+
+when@test:
+    twig:
+        strict_variables: true
