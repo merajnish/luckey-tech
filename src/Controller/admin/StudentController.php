@@ -13,6 +13,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use App\Entity\Countries;
 use App\Entity\States;
 use App\Entity\Student;
+use App\Entity\Course;
 
 #[Route('/admin')]
 final class StudentController extends AbstractController
@@ -42,6 +43,7 @@ final class StudentController extends AbstractController
     {
         $student = $this->em->getRepository(Student::class)->findOneById($id);
         if($student){
+            $course = $this->em->getRepository(Course::class)->findAll();
             $countries = $this->em->getRepository(Countries::class)->findAll();
             $states = $this->em->getRepository(States::class)->findByCountry($student->getCountry());
             if($request->isMethod('post')){
@@ -49,6 +51,7 @@ final class StudentController extends AbstractController
                 $params = $request->request->all();
                 $countries = $this->em->getRepository(Countries::class)->findOneById($params['country']);
                 $states = $this->em->getRepository(States::class)->findOneById($params['state']);
+                $post_course = $this->em->getRepository(Course::class)->findOneById($params['course']);
                 $plaintextPassword = $params['first_name'] . "#2025";
                 $student_obj = $student;
                 $student_obj->setEmail($params['email']);
@@ -60,7 +63,7 @@ final class StudentController extends AbstractController
                 $student_obj->setDateOfAdmission(\DateTime::createFromFormat('Y-m-d', $params['doa']));
                 $student_obj->setMobile($params['mobile']);
                 $student_obj->setQualification($params['qualification']);
-                $student_obj->setCourse($params['course']);
+                $student_obj->setCourse($post_course);
                 $student_obj->setAddress1($params['address1']);
                 $student_obj->setAddress2($params['address2']);
                 $student_obj->setCity($params['city']);
@@ -83,6 +86,7 @@ final class StudentController extends AbstractController
             // dd($countries, $States);
             return $this->render('admin/student/add-student.html.twig', [
                 'countries' => $countries,
+                "courses"    => $course,
                 'student'   => $student,
                 'states'    => $states,
             ]);
@@ -95,6 +99,7 @@ final class StudentController extends AbstractController
     public function studentAdd(Request $request): Response
     {
         // dd($request->request->all());
+        $course = $this->em->getRepository(Course::class)->findAll();
         if($request->isMethod('post')){
             $params = $request->request->all();
             // Student unique registration no
@@ -105,6 +110,7 @@ final class StudentController extends AbstractController
             // End Student unique registration no
             $countries = $this->em->getRepository(Countries::class)->findOneById($params['country']);
             $states = $this->em->getRepository(States::class)->findOneById($params['state']);
+            $post_course = $this->em->getRepository(Course::class)->findOneById($params['course']);
             $plaintextPassword = $params['first_name'] . "#2025";
             $student_obj = new Student();
             $student_obj->setEmail($params['email']);
@@ -116,7 +122,7 @@ final class StudentController extends AbstractController
             $student_obj->setDateOfAdmission(\DateTime::createFromFormat('Y-m-d', $params['doa']));
             $student_obj->setMobile($params['mobile']);
             $student_obj->setQualification($params['qualification']);
-            $student_obj->setCourse($params['course']);
+            $student_obj->setCourse($post_course);
             $student_obj->setAddress1($params['address1']);
             $student_obj->setAddress2($params['address2']);
             $student_obj->setCity($params['city']);
@@ -139,6 +145,7 @@ final class StudentController extends AbstractController
         }
         $countries = $this->em->getRepository(Countries::class)->findAll();
         return $this->render('admin/student/add-student.html.twig', [
+            "courses"    => $course,
             'countries' => $countries,
         ]);
     }

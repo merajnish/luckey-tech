@@ -53,8 +53,10 @@ class Student implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $qualification = null;
 
-    #[ORM\Column(length: 50, nullable: true)]
-    private ?string $course = null;
+    // #[ORM\Column(length: 50, nullable: true)]
+    // private ?string $course = null;
+    #[ORM\ManyToOne]
+    private ?Course $course = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $address1 = null;
@@ -251,12 +253,12 @@ class Student implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCourse(): ?string
+    public function getCourse(): ?Course
     {
         return $this->course;
     }
 
-    public function setCourse(?string $course): static
+    public function setCourse(?Course $course): static
     {
         $this->course = $course;
 

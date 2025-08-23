@@ -56,7 +56,7 @@
                                         {% for teacher in teachers %}
                                         <tr>
                                             <td>{{teacher.registrationNumber ?? 'Not available' }}</td>
-                                            <td>{{teacher.dateOfAdmission|date("m/d/Y")}}</td>
+                                            <td>{{teacher.joiningDate|date("m/d/Y")}}</td>
                                             <td>{{teacher.firstName ~ " " ~ teacher.lastName}}</td>
                                             <td>{{teacher.mobile}}</td>
                                             <td>{{teacher.gender}}</td>
@@ -89,6 +89,8 @@
 <!-- End of Content Wrapper -->
 
 <script>
+$(document).ready(function(){
 $('#myTable').DataTable();
+});
 </script>
 {% endblock %}

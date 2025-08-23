@@ -95,7 +95,7 @@
                                         <div class="col-sm-4 mb-3 mb-sm-0">
                                             <div data-mdb-input-init class="form-outline">
                                                 <label class="form-label" for="teacherDOA">Date of Joining</label>
-                                                <input type="date" value="{{teacher.dateOfAdmission|date("Y-m-d")}}" class="form-control datepicker" id="teacherDOA" name="doa" placeholder="Enter date of Joining" required>
+                                                <input type="date" value="{{teacher.joiningDate|date("Y-m-d")}}" class="form-control datepicker" id="teacherDOA" name="doa" placeholder="Enter date of Joining" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-4 mb-3 mb-sm-0">
@@ -138,13 +138,13 @@
                                         <div class="col-sm-4 mb-3 mb-sm-0">
                                             <div data-mdb-input-init class="form-outline">
                                                 <label class="form-label" for="password">Password</label>
-                                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" data-parsley-type="password" autocomplete="off" required>
+                                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" data-parsley-pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" data-parsley-pattern-message="Password must be at least 8 characters and include a number." required>
                                             </div>
                                         </div>
                                         <div class="col-sm-4 mb-3 mb-sm-0">
                                             <div data-mdb-input-init class="form-outline">
                                                 <label class="form-label" for="password">Repeat Password</label>
-                                                <input type="password" class="form-control" id="repeatPassword" name="repeatPassword" placeholder="Enter repeat password" data-parsley-type="password" data-parsley-equalto="#password" autocomplete="off" required>
+                                                <input type="password" class="form-control" id="repeatPassword" name="repeatPassword" placeholder="Enter repeat password" data-parsley-pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" data-parsley-pattern-message="Password must be at least 8 characters and include a number." data-parsley-equalto="#password" required>
                                             </div>
                                         </div>
                                     </div>                                    
@@ -290,13 +290,13 @@
                                         <div class="col-sm-4 mb-3 mb-sm-0">
                                             <div data-mdb-input-init class="form-outline">
                                                 <label class="form-label" for="password">Password</label>
-                                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" data-parsley-type="password" required>
+                                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" data-parsley-pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" data-parsley-pattern-message="Password must be at least 8 characters and include a number." required>
                                             </div>
                                         </div>
                                         <div class="col-sm-4 mb-3 mb-sm-0">
                                             <div data-mdb-input-init class="form-outline">
                                                 <label class="form-label" for="password">Repeat Password</label>
-                                                <input type="password" class="form-control" id="repeatPassword" name="repeatPassword" placeholder="Enter repeat password" data-parsley-type="password" data-parsley-equalto="#password" required>
+                                                <input type="password" class="form-control" id="repeatPassword" name="repeatPassword" placeholder="Enter repeat password" data-parsley-pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" data-parsley-pattern-message="Password must be at least 8 characters and include a number." data-parsley-equalto="#password" required>
                                             </div>
                                         </div>
                                     </div>                                    
@@ -380,8 +380,11 @@
 
 <script>
 //$('#myTable').DataTable();
-$(".datepicker").flatpickr();
-$('#teacherForm').parsley();
+// $('#teacherForm').parsley();
+$(document).ready(function () {
+    $(".datepicker").flatpickr();
+    $('#teacherForm').parsley();
+});
 
 $('#country').on('change', function () {
     let countryId = $(this).val();

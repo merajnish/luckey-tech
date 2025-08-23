@@ -36,6 +36,7 @@
                                             <th>Registration</th>
                                             <th>Registration date</th>
                                             <th>Name</th>
+                                            <th>Course</th>
                                             <th>Mobile</th>
                                             <th>Gender</th>
                                             <th>Action</th>
@@ -58,6 +59,7 @@
                                             <td>{{student.registrationNumber ?? 'Not available' }}</td>
                                             <td>{{student.dateOfAdmission|date("m/d/Y")}}</td>
                                             <td>{{student.firstName ~ " " ~ student.lastName}}</td>
+                                            <td>{{student.course.courseName}}</td>
                                             <td>{{student.mobile}}</td>
                                             <td>{{student.gender}}</td>
                                             <td>
@@ -89,6 +91,8 @@
 <!-- End of Content Wrapper -->
 
 <script>
-$('#myTable').DataTable();
+$(document).ready(function(){
+    $('#myTable').DataTable();
+});
 </script>
 {% endblock %}

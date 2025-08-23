@@ -51,18 +51,17 @@ final class TeacherController extends AbstractController
                 $states = $this->em->getRepository(States::class)->findOneById($params['state']);
                 $plaintextPassword = $params['first_name'] . "#2025";
                 $teacher_obj = $teacher;
+                $plaintextPassword = $params['password'];
                 $teacher_obj->setEmail($params['email']);
-                // $teacher_obj->setRoles(['ROLE_teacher']);
                 $teacher_obj->setFirstName($params['first_name']);
                 $teacher_obj->setLastName($params['last_name']);
                 $teacher_obj->setGender($params['gender']);
                 $teacher_obj->setDob(\DateTime::createFromFormat('Y-m-d', $params['dob']));
-                $teacher_obj->setDateOfAdmission(\DateTime::createFromFormat('Y-m-d', $params['doa']));
+                $teacher_obj->setJoiningDate(\DateTime::createFromFormat('Y-m-d', $params['doa']));
                 $teacher_obj->setMobile($params['mobile']);
                 $teacher_obj->setQualification($params['qualification']);
-                $teacher_obj->setCourse($params['course']);
-                $teacher_obj->setAddress1($params['address1']);
-                $teacher_obj->setAddress2($params['address2']);
+                $teacher_obj->setExperience($params['experience']);
+                $teacher_obj->setAddress($params['address']);
                 $teacher_obj->setCity($params['city']);
                 $teacher_obj->setCountry($countries);
                 $teacher_obj->setState($states);
@@ -70,11 +69,11 @@ final class TeacherController extends AbstractController
                 $teacher_obj->setAadhaar($params['aadhaar']);
                 $teacher_obj->setUpdatedAt(new \DateTime());
                 $this->em->persist($teacher_obj);
-                // if($teacher_obj){
-                //     $hashedPassword = $this->passwordHasher->hashPassword($teacher_obj,$plaintextPassword);
-                //     $teacher_obj->setPassword($hashedPassword);
-                //     $this->em->persist($teacher_obj);
-                // }
+                if($teacher_obj){
+                    $hashedPassword = $this->passwordHasher->hashPassword($teacher_obj,$plaintextPassword);
+                    $teacher_obj->setPassword($hashedPassword);
+                    $this->em->persist($teacher_obj);
+                }
                 $this->em->flush();
                 // Redirect to a named route 'app_new_path'
                 return $this->redirectToRoute('app_teacher_edit', ['id'=>$id]);
@@ -113,12 +112,11 @@ final class TeacherController extends AbstractController
             $teacher_obj->setLastName($params['last_name']);
             $teacher_obj->setGender($params['gender']);
             $teacher_obj->setDob(\DateTime::createFromFormat('Y-m-d', $params['dob']));
-            $teacher_obj->setDateOfAdmission(\DateTime::createFromFormat('Y-m-d', $params['doa']));
+            $teacher_obj->setJoiningDate(\DateTime::createFromFormat('Y-m-d', $params['doa']));
             $teacher_obj->setMobile($params['mobile']);
             $teacher_obj->setQualification($params['qualification']);
-            $teacher_obj->setCourse($params['course']);
-            $teacher_obj->setAddress1($params['address1']);
-            $teacher_obj->setAddress2($params['address2']);
+            $teacher_obj->setExperience($params['experience']);
+            $teacher_obj->setAddress($params['address']);
             $teacher_obj->setCity($params['city']);
             $teacher_obj->setCountry($countries);
             $teacher_obj->setState($states);

@@ -1,0 +1,113 @@
+{% extends 'admin/admin-base.html.twig' %}
+
+{% block title %}course{% endblock %}
+
+{% block body %}
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
+
+        {% include 'admin/admin-topbar.html.twig' %}
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">{% if course is defined and course is not null %} Course update {% else %}Course add {% endif %}</h1>
+                {# <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> #}
+                {# <a href="{{path('app_course_add')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" title="Add"><i class="fas fa-plus-square"></i></a> #}
+                <nav aria-label="breadcrumb bg-transparent">
+                    <ol class="breadcrumb bg-transparent">
+                        <li class="breadcrumb-item"><a href="{{path('app_course')}}">course list</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{% if course is defined and course is not null %} Course update {% else %}Course add {% endif %}</li>
+                    </ol>
+                </nav>
+            </div>
+
+            <!-- Content Row -->
+            <div class="row">
+
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-12 col-md-6 mb-4">
+                    <div class="card border-left-primary- shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-xl-12 col-md-6 mb-4">
+                                    <h5 class="form-title"><span>Basic Details</span></h5>
+                                </div>
+                            </div>
+                            {% if course is defined and course is not null %}
+                                <form id="courseForm" method="POST" data-parsley-validate>
+                                    <!-- 2 column grid layout with text inputs for the first and Course types -->
+                                    <div class="row mb-4">
+                                        <div class="col-sm-4 mb-3 mb-sm-0">
+                                            <div data-mdb-input-init class="form-outline">
+                                                <label class="form-label" for="form6Example1">Course name</label>
+                                                <input type="text" value="{{course.courseName}}" id="form6Example1" class="form-control" placeholder="Enter course name" name="course_name" required />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 mb-3 mb-sm-0">
+                                            <div data-mdb-input-init class="form-outline">
+                                                <label class="form-label" for="form6Example2">Course type</label>
+                                                <input type="text" value="{{course.courseType}}" name="course_type" id="form6Example2" class="form-control" placeholder="Enter course type" required />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Submit button -->
+                                    <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block- mb-4">Update course</button>
+                                </form>
+                            {% else %}
+                                <form id="courseForm" method="POST" data-parsley-validate>
+                                    <!-- 2 column grid layout with text inputs for the first and Course types -->
+                                    <div class="row mb-4">
+                                        <div class="col-sm-4 mb-3 mb-sm-0">
+                                            <div data-mdb-input-init class="form-outline">
+                                                <label class="form-label" for="form6Example1">Course name</label>
+                                                <input type="text" id="form6Example1" class="form-control" placeholder="Enter course name" name="course_name" required />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 mb-3 mb-sm-0">
+                                            <div data-mdb-input-init class="form-outline">
+                                                <label class="form-label" for="form6Example2">Course type</label>
+                                                <input type="text" name="course_type" id="form6Example2" class="form-control" placeholder="Enter course type" required />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Submit button -->
+                                    <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block- mb-4">Add course</button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+
+    {% include 'admin/sticky-footer.html.twig' %}
+
+</div>
+<!-- End of Content Wrapper -->
+
+<script>
+//$('#myTable').DataTable();
+// $('#courseForm').parsley();
+$(document).ready(function () {
+    $(".datepicker").flatpickr();
+    $('#courseForm').parsley();
+});
+</script>
+{% endblock %}
