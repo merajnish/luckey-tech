@@ -51,9 +51,7 @@ final class CourseController extends AbstractController
                 $this->em->flush();
                 // Redirect to a named route 'app_new_path'
                 return $this->redirectToRoute('app_course_edit', ['id'=>$id]);
-                // dd($params, $course_obj, "here");
             }
-            // dd($countries, $States);
             return $this->render('admin/course/add-course.html.twig', [
                 'course'   => $course,
             ]);
@@ -65,7 +63,6 @@ final class CourseController extends AbstractController
     #[Route('/course/add', name: 'app_course_add')]
     public function courseAdd(Request $request): Response
     {
-        // dd($request->request->all());
         if($request->isMethod('post')){
             $params = $request->request->all();
             $course_obj = new Course();
@@ -75,7 +72,6 @@ final class CourseController extends AbstractController
             $this->em->flush();
             // Redirect to a named route 'app_new_path'
             return $this->redirectToRoute('app_course');
-            // dd($params, $course_obj, "here");
         }
         return $this->render('admin/course/add-course.html.twig');
     }
